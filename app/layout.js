@@ -1,4 +1,4 @@
-// import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import "./globals.css";
 
 const metadata = {
@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="antialiased">
-        {/* <Navbar /> */}
+        <Navbar />
         {children}
       </body>
     </html>
