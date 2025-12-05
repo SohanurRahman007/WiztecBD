@@ -2,9 +2,12 @@
 "use client";
 
 import React, { useState } from "react";
-import PropertyList from "../components/PropertyList";
-import Sidebar from "../components/Sidebar";
-import { initialProperties } from "../data/properties";
+import Sidebar from "./components/Sidebar";
+import PropertyList from "./components/PropertyList";
+import { initialProperties } from "./data/properties";
+// import PropertyList from "./components/PropertyList";
+// import Sidebar from "./components/Sidebar";
+// import { initialProperties } from "./data/properties";
 
 export default function BuyPage() {
   // ১. State-এ initialProperties লোড করা হয়েছে
@@ -75,7 +78,7 @@ export default function BuyPage() {
           </div>
 
           {/* Property Cards Grid */}
-          <PropertyList allProperties={properties} />
+          <PropertyList allProperties={initialProperties} />
         </div>
       </div>
     </div>
