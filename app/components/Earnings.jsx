@@ -74,41 +74,44 @@ const Earnings = () => {
         </div>
 
         {/* 3. Static Icons Row (Not Clickable) */}
-        <div className="flex justify-around flex-wrap rounded-full p-3  bg-white mb-12 max-w-6xl mx-auto">
+        <div className="flex flex-wrap justify-center sm:justify-around rounded-full p-2 sm:p-3 bg-white mb-8 sm:mb-12 max-w-5xl lg:max-w-6xl mx-auto gap-1 sm:gap-2">
           {/* Courses Button - Active State */}
-          <div className="bg-[#2A0019] text-white px-4 py-2 rounded-full text-sm flex items-center font-bold shadow-lg ring-2 ring-[#2A0019]/50">
-            <FaLaptopCode className="mr-2 text-base" />
+          <div className="bg-[#2A0019] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm flex items-center font-bold shadow-lg ring-2 ring-[#2A0019]/50 m-0.5 sm:m-1">
+            <FaLaptopCode className="mr-1.5 sm:mr-2 text-sm" />
             Courses
           </div>
 
           {/* Other Icons - Inactive State */}
-          <div className=" text-gray-700  text-sm flex items-center font-medium ">
-            <FaUsers className="mr-2 text-base" />
-            Communities
+          <div className="text-gray-700 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full text-xs sm:text-sm flex items-center font-medium m-0.5 sm:m-1 hover:bg-gray-100 transition-colors">
+            <FaUsers className="mr-1.5 sm:mr-2 text-sm" />
+            <span className="hidden xs:inline">Communities</span>
+            <span className="xs:hidden">Comm.</span>
           </div>
 
-          <div className="text-gray-700  text-sm flex items-center font-medium">
-            <FaHandshake className="mr-2 text-base" />
-            Coaching & Consulting
+          <div className="text-gray-700 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full text-xs sm:text-sm flex items-center font-medium m-0.5 sm:m-1 hover:bg-gray-100 transition-colors">
+            <FaHandshake className="mr-1.5 sm:mr-2 text-sm" />
+            <span className="hidden sm:inline">Coaching & Consulting</span>
+            <span className="sm:hidden">Coaching</span>
           </div>
 
-          <div className="text-gray-700  text-sm flex items-center font-medium">
-            <FaTshirt className="mr-2 text-base" />
-            Merchandise
+          <div className="text-gray-700 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full text-xs sm:text-sm flex items-center font-medium m-0.5 sm:m-1 hover:bg-gray-100 transition-colors">
+            <FaTshirt className="mr-1.5 sm:mr-2 text-sm" />
+            <span className="hidden xs:inline">Merchandise</span>
+            <span className="xs:hidden">Merch</span>
           </div>
 
-          <div className="text-gray-700  text-sm flex items-center font-medium">
-            <FaPodcast className="mr-2 text-base" />
+          <div className="text-gray-700 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full text-xs sm:text-sm flex items-center font-medium m-0.5 sm:m-1 hover:bg-gray-100 transition-colors">
+            <FaPodcast className="mr-1.5 sm:mr-2 text-sm" />
             Podcasts
           </div>
 
-          <div className="text-gray-700  text-sm flex items-center font-medium">
-            <FaCalendarAlt className="mr-2 text-base" />
+          <div className="text-gray-700 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full text-xs sm:text-sm flex items-center font-medium m-0.5 sm:m-1 hover:bg-gray-100 transition-colors">
+            <FaCalendarAlt className="mr-1.5 sm:mr-2 text-sm" />
             Events
           </div>
 
-          <div className="text-gray-700  text-sm flex items-center font-medium">
-            <FaBriefcase className="mr-2 text-base" />
+          <div className="text-gray-700 px-2 py-1.5 sm:px-3 sm:py-2 rounded-full text-xs sm:text-sm flex items-center font-medium m-0.5 sm:m-1 hover:bg-gray-100 transition-colors">
+            <FaBriefcase className="mr-1.5 sm:mr-2 text-sm" />
             Brokerage
           </div>
         </div>
@@ -117,7 +120,7 @@ const Earnings = () => {
         <div className="bg-gradient-to-r from-[#802878] via-[#d458ce] to-[#d88ad4] rounded-l-full rounded-r-2xl p-6 sm:p-10 lg:p-16 max-w-6xl mx-auto shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             {/* Left Content */}
-            <div className="text-white">
+            <div className="text-white hidden md:flex flex-col">
               <h2 className="text-4xl font-extrabold mb-4">Courses</h2>
 
               <p className="mb-6 text-gray-200">

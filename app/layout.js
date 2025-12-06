@@ -8,10 +8,25 @@ const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // Get current path
+  const pathname =
+    typeof window !== "undefined" ? window.location.pathname : "";
+
+  // Define which pages should hide navbar
+  const hideNavbarPages = [
+    "/auth/signin",
+    "/auth/signup",
+    "/auth/login",
+    "/auth/register",
+  ];
+  const shouldHideNavbar = hideNavbarPages.some((page) =>
+    pathname.startsWith(page)
+  );
+
   return (
     <html lang="en" className="light">
       <body className="antialiased">
-        <Navbar />
+        {!shouldHideNavbar && <Navbar />}
         {children}
       </body>
     </html>

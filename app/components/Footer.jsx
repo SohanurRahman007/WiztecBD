@@ -6,21 +6,19 @@ import {
   FaWhatsapp,
   FaTiktok,
 } from "react-icons/fa";
-// Note: The 'X' icon (formerly Twitter) can be represented by a custom element or FaTwitter for simplicity
-// Since the image uses the specific 'X' logo, a custom styling is applied to a generic icon.
 
 const Footer = () => {
-  // Custom colors derived from the provided image
-  const footerBgColor = "#321434"; // A deep, slightly reddish-purple
-  const linkColor = "#C1B6C4"; // Muted light text color for links
-  const iconBorderColor = "#5B415D"; // Darker border color for social icons
+  // Custom colors derived from the provided design images
+  const footerBgColor = "#321434";
+  const linkColor = "#C1B6C4";
+  const iconBorderColor = "#5B415D";
 
   return (
     // Outer container with the custom background color
     <footer className="w-full pt-16" style={{ backgroundColor: footerBgColor }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white relative">
         {/* 1. Main Footer Content (3 Columns) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 gap-8 pb-12 border-b border-gray-700/50">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 gap-8 pb-12  border-gray-700/50">
           {/* Column 1: About Us */}
           <div className="col-span-1">
             <h3 className="text-xl font-bold mb-4">About Us</h3>
@@ -75,11 +73,12 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Column 3: Follow Us */}
-          <div className="col-span-2 lg:col-span-1">
-            <h3 className="text-xl font-bold mb-4">Follow Us</h3>
-            <div className="flex space-x-3 items-center">
-              {/* Social Icons Container */}
+          {/* Column 3: Follow Us and Copyright */}
+          <div className="col-span-2 lg:col-span-1 flex flex-col items-start lg:items-end">
+            <h3 className="text-xl font-bold mb-4 lg:text-right">Follow Us</h3>
+
+            {/* Social Icons */}
+            <div className="flex space-x-3 items-center mb-6 lg:mb-0">
               {[FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp, FaTiktok].map(
                 (Icon, index) => (
                   <a
@@ -88,35 +87,40 @@ const Footer = () => {
                     className="w-8 h-8 rounded-full flex items-center justify-center transition-colors border"
                     style={{ borderColor: iconBorderColor }} // Custom border color
                   >
-                    {/* For the 'X' icon (index 1), the image uses a unique logo. Using FaTwitter as a placeholder. */}
                     <Icon className="w-4 h-4" style={{ color: linkColor }} />
                   </a>
                 )
               )}
             </div>
+
+            {/* Copyright (Aligned to the right/bottom of the footer content) */}
+            <p
+              className="text-sm lg:mt-15 lg:text-right"
+              style={{ color: linkColor }}
+            >
+              © 2025 Havenix. All rights reserved.
+            </p>
           </div>
         </div>
 
-        {/* 2. Large Watermark Text */}
-        <div className="absolute left-0 right-0 bottom-0 pointer-events-none z-0 overflow-hidden">
+        <div className="w-full py-16 text-center ">
           <h1
-            className="text-[120px] sm:text-[200px] md:text-[300px] lg:text-[400px] font-extrabold opacity-10 leading-none"
+            className="w-full font-black"
             style={{
-              color: "#FFFFFF", // White base color
-              textShadow: "0 0 10px rgba(255, 255, 255, 0.1)", // Subtle shadow
-              transform: "translateY(10%)", // Shift down to show top half clearly
-              whiteSpace: "nowrap",
+              fontSize: "clamp(4rem, 20vw, 15rem)",
+              background: "linear-gradient(90deg, #8A7384 0%, #CAC3C3 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+              letterSpacing: "0.03em",
+              display: "block",
+              width: "100%",
+              lineHeight: "0.8",
+              fontWeight: 700,
             }}
           >
             WiztecBD
           </h1>
-        </div>
-
-        {/* 3. Copyright Text (Bottom) */}
-        <div className="text-right py-4 text-sm z-10 relative">
-          <p style={{ color: linkColor }}>
-            © 2025 Havenix. All rights reserved.
-          </p>
         </div>
       </div>
       {/* Darker bottom strip (as seen in the image) */}
