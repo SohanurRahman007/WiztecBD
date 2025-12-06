@@ -2,6 +2,7 @@ import BuyPage from "./buy/page";
 import CreatorHeroSection from "./components/CreatorHeroSection";
 import Earnings from "./components/Earnings";
 import EssentialToolsSection from "./components/EssentialToolsSection";
+import Footer from "./components/Footer";
 import TestimonialsSection from "./components/TestimonialsSlider";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
       <Earnings />
       <TestimonialsSection />
       <EssentialToolsSection />
+      <Footer />
     </div>
   );
 }
