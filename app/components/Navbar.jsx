@@ -71,7 +71,7 @@ const Navbar = () => {
 
             {/* Login Button */}
             <Link
-              href="/auth/login"
+              href="/auth/signin"
               className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-[#7b1450] hover:bg-[#6b1145] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#7b1450] transition-colors duration-200"
             >
               Login Now
@@ -121,7 +121,7 @@ const Navbar = () => {
             {/* Mobile Login Button */}
             <div className="pt-4 pb-3 border-t border-gray-200">
               <Link
-                href="/auth/login"
+                href="/auth/signin"
                 className="block w-full text-center px-4 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-[#7b1450] hover:bg-[#6b1145] transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >

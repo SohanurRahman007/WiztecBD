@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 
@@ -8,9 +11,7 @@ const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // Get current path
-  const pathname =
-    typeof window !== "undefined" ? window.location.pathname : "";
+  const pathname = usePathname();
 
   // Define which pages should hide navbar
   const hideNavbarPages = [
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
     "/auth/login",
     "/auth/register",
   ];
+
   const shouldHideNavbar = hideNavbarPages.some((page) =>
     pathname.startsWith(page)
   );
