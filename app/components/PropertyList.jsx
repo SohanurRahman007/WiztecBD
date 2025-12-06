@@ -4,74 +4,99 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-// lucide-react থেকে আইকন ইমপোর্ট করা হয়েছে
-import {
-  BedDouble,
-  Bath,
-  Square,
-  Heart,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { IoBedOutline, IoWaterOutline } from "react-icons/io5";
+import { BiArea } from "react-icons/bi";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { HiOutlineDotsVertical } from "react-icons/hi";
 
-// ডেটা ফাইল থেকে ITEMS_PER_PAGE ইমপোর্ট করা হয়েছে (Relative Import)
 import { ITEMS_PER_PAGE } from "../data/properties";
-import PropertyModal from "./PropertyModal"; // মডাল কম্পোনেন্ট ইমপোর্ট করা হলো
+import PropertyModal from "./PropertyModal";
 
-// --- Property Card Component ---
-const PropertyCard = ({ property, onCardClick }) => (
-  <div
-    className="block border border-gray-100 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
-    onClick={() => onCardClick(property)}
-  >
-    <div className="relative h-48 bg-gray-200">
-      {/* 🛑 আসল ইমেজ লিংক ব্যবহার করা হলো 🛑 */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${property.image})`,
-        }}
-      ></div>
-      <button
-        type="button"
-        className="absolute top-3 right-3 bg-white p-2 rounded-full text-gray-500 hover:text-red-500 shadow-md z-10"
-        onClick={(e) => {
-          e.stopPropagation(); // হার্ট আইকনে ক্লিক করলে যেন Modal ওপেন না হয়
-          console.log("Favourite toggled");
-        }}
-      >
-        <Heart className="w-5 h-5 fill-current" />
-      </button>
-    </div>
+// Property Card Component
+const PropertyCard = ({ property, onCardClick }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
 
-    {/* Card Details */}
-    <div className="p-4">
-      <h3 className="text-lg font-bold text-gray-900 mb-1 truncate">
-        {property.name}
-      </h3>
-      <p className="text-xl font-extrabold text-purple-700 mb-2">
-        ${property.price}
-        <span className="text-sm font-medium text-gray-500">
-          /{property.freq || "week"}
-        </span>
-      </p>
-      <div className="flex space-x-4 text-sm text-gray-500">
-        <div className="flex items-center">
-          <BedDouble className="w-4 h-4 mr-1" /> {property.beds} Bed
+  return (
+    <div
+      className="w-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow cursor-pointer"
+      onClick={() => onCardClick(property)}
+    >
+      {/* Property Image */}
+      <div className="relative h-56 overflow-hidden">
+        <img
+          src={property.image}
+          alt={property.name}
+          className="w-full h-full object-cover"
+        />
+
+        {/* Favorite Button */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsFavorite(!isFavorite);
+          }}
+          className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm p-2 rounded-full 
+                     hover:bg-white transition-colors shadow-md z-10"
+        >
+          {isFavorite ? (
+            <BsHeartFill className="w-4 h-4 text-red-500" />
+          ) : (
+            <BsHeart className="w-4 h-4 text-gray-600" />
+          )}
+        </button>
+      </div>
+
+      {/* Card Content */}
+      <div className="p-4">
+        {/* Property Features - Bed, Bath, Area */}
+        <div className="flex items-center gap-4 text-gray-600 text-xs mb-3">
+          <div className="flex items-center gap-1">
+            <IoBedOutline className="w-4 h-4" />
+            <span>Bed: {property.beds}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <IoWaterOutline className="w-4 h-4" />
+            <span>Bathroom: {property.baths}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <BiArea className="w-4 h-4" />
+            <span>{property.sqft}sqft</span>
+          </div>
         </div>
-        <div className="flex items-center">
-          <Bath className="w-4 h-4 mr-1" /> {property.baths} Bathroom
+
+        {/* Property Name & Options Menu */}
+        <div className="flex items-start justify-between mb-2">
+          <h3 className="text-base font-semibold text-gray-900 leading-tight">
+            {property.name}
+          </h3>
+          <button
+            onClick={(e) => e.stopPropagation()}
+            className="text-gray-400 hover:text-gray-600 p-1"
+          >
+            <HiOutlineDotsVertical className="w-5 h-5" />
+          </button>
         </div>
-        <div className="flex items-center">
-          <Square className="w-4 h-4 mr-1" /> {property.sqft} sqft
+
+        {/* Price & Location */}
+        <div className="flex items-center gap-3">
+          <div>
+            <span className="text-lg font-bold text-gray-900">
+              ${property.price}
+            </span>
+            <span className="text-sm text-gray-500 ml-1">
+              /{property.freq || "week"}
+            </span>
+          </div>
+          <span className="text-md text-gray-500">{property.location}</span>
         </div>
       </div>
-      <p className="text-xs text-gray-400 mt-2">{property.location}</p>
     </div>
-  </div>
-);
+  );
+};
 
-// --- Pagination Component ---
+// Pagination Component
 const Pagination = ({
   totalItems,
   itemsPerPage,
@@ -79,23 +104,30 @@ const Pagination = ({
   onPageChange,
 }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  // Don't show pagination if only 1 page
   if (totalPages <= 1) return null;
 
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-  // ছবির সাথে মিল রেখে পেজ নম্বর ডিসপ্লে লজিক
+  // Show first 4 pages, then "...", then last page
   const displayPages =
     pages.length > 5 ? [...pages.slice(0, 4), "...", totalPages] : pages;
 
   return (
     <div className="flex justify-center items-center space-x-2 mt-8">
+      {/* Previous Button */}
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+        className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 
+                   bg-white border border-gray-300 rounded-md hover:bg-gray-50 
+                   disabled:opacity-50"
       >
         <ChevronLeft className="w-4 h-4 mr-1" /> Previous
       </button>
+
+      {/* Page Numbers */}
       <nav className="flex space-x-1" aria-label="Pagination">
         {displayPages.map((page, index) =>
           page === "..." ? (
@@ -108,7 +140,7 @@ const Pagination = ({
               onClick={() => onPageChange(page)}
               className={`px-3 py-1 text-sm font-medium rounded-lg transition-colors ${
                 page === currentPage
-                  ? "bg-purple-700 text-white"
+                  ? "bg-[#7b1450] text-white"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
             >
@@ -117,10 +149,14 @@ const Pagination = ({
           )
         )}
       </nav>
+
+      {/* Next Button */}
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
+        className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 
+                   bg-white border border-gray-300 rounded-md hover:bg-gray-50 
+                   disabled:opacity-50"
       >
         Next <ChevronRight className="w-4 h-4 ml-1" />
       </button>
@@ -128,39 +164,41 @@ const Pagination = ({
   );
 };
 
-// --- Main PropertyList Component ---
+// Main PropertyList Component
 const PropertyList = ({ allProperties = [] }) => {
+  // State management
   const [currentPage, setCurrentPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
-  const [selectedProperty, setSelectedProperty] = useState(null); // Selected card data
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState(null);
 
-  // Modal ওপেন করার হ্যান্ডলার
+  // Open modal with selected property
   const handleCardClick = (property) => {
     setSelectedProperty(property);
     setIsModalOpen(true);
   };
 
-  // Modal বন্ধ করার হ্যান্ডলার
+  // Close modal and reset selected property
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedProperty(null); // ডেটা রিসেট
+    setSelectedProperty(null);
   };
 
-  // পেজিনেশন লজিক
+  // Calculate properties for current page
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentProperties = allProperties.slice(startIndex, endIndex);
 
-  // পেজ পরিবর্তন হ্যান্ডলার
+  // Handle page change
   const handlePageChange = (page) => {
-    if (page >= 1 && page <= Math.ceil(allProperties.length / ITEMS_PER_PAGE)) {
+    const totalPages = Math.ceil(allProperties.length / ITEMS_PER_PAGE);
+    if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
 
   return (
     <div>
-      {/* Property Cards Grid */}
+      {/* Property Cards Grid - 2 columns on medium+ screens */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {currentProperties.length > 0 ? (
           currentProperties.map((property) => (
@@ -177,7 +215,7 @@ const PropertyList = ({ allProperties = [] }) => {
         )}
       </div>
 
-      {/* Pagination Component */}
+      {/* Show Pagination only if more than one page */}
       {allProperties.length > ITEMS_PER_PAGE && (
         <Pagination
           totalItems={allProperties.length}
@@ -187,7 +225,7 @@ const PropertyList = ({ allProperties = [] }) => {
         />
       )}
 
-      {/* Modal Component */}
+      {/* Property Details Modal */}
       {selectedProperty && (
         <PropertyModal
           isOpen={isModalOpen}
