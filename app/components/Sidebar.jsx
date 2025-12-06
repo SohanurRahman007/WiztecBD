@@ -260,7 +260,12 @@ const Sidebar = ({ onFilterChange }) => {
 
       {/* Suburb Filter */}
       <div className="border border-gray-200 p-5 rounded-xl mb-6 bg-white shadow-sm">
-        <h3 className="text-base font-semibold text-gray-900 mb-4">Suburb</h3>
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-base font-semibold text-gray-900">Suburb</h3>
+          <span className="text-gray-800">
+            <FaRegWindowMinimize />
+          </span>
+        </div>
         <div className="space-y-3">
           {suburbs.map((suburb) => (
             <CheckboxItem
@@ -275,9 +280,14 @@ const Sidebar = ({ onFilterChange }) => {
 
       {/* Property Type Filter */}
       <div className="border border-gray-200 p-5 rounded-xl mb-6 bg-white shadow-sm">
-        <h3 className="text-base font-semibold text-gray-900 mb-4">
-          Property Type
-        </h3>
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-base font-semibold text-gray-900">
+            Property Type
+          </h3>
+          <span className="text-gray-800">
+            <FaRegWindowMinimize />
+          </span>
+        </div>
         <div className="space-y-3">
           {propertyTypes.map((type) => (
             <CheckboxItem
@@ -292,9 +302,12 @@ const Sidebar = ({ onFilterChange }) => {
 
       {/* Amenities Filter */}
       <div className="border border-gray-200 p-5 rounded-xl mb-6 bg-white shadow-sm">
-        <h3 className="text-base font-semibold text-gray-900 mb-4">
-          Amenities
-        </h3>
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-base font-semibold text-gray-900">Amenities</h3>
+          <span className="text-gray-800">
+            <FaRegWindowMinimize />
+          </span>
+        </div>
         <div className="space-y-3">
           {amenities.map((amenity) => (
             <CheckboxItem
