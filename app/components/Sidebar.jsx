@@ -35,7 +35,6 @@ const Sidebar = ({ onFilterChange }) => {
 
     setSelectedTypes(newTypes);
 
-    // Send filter changes to parent
     if (onFilterChange) {
       onFilterChange({
         propertyType: newTypes,
@@ -97,7 +96,6 @@ const Sidebar = ({ onFilterChange }) => {
   // Component for checkbox items
   const CheckboxItem = ({ label, checked, onChange }) => (
     <div className="flex items-center group cursor-pointer">
-      {/* Custom Checkbox with Project Color */}
       <div className="relative">
         <input
           id={`filter-${label.replace(/\s+/g, "-").toLowerCase()}`}
@@ -105,7 +103,7 @@ const Sidebar = ({ onFilterChange }) => {
           checked={checked}
           onChange={onChange}
           className="
-            h-5 w-5 
+            h-4 w-4 sm:h-5 sm:w-5
             appearance-none 
             border border-gray-300 
             rounded 
@@ -122,11 +120,10 @@ const Sidebar = ({ onFilterChange }) => {
             z-10
           "
         />
-        {/* Checkmark SVG */}
         {checked && (
           <svg
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
-                     w-3 h-3 text-white pointer-events-none z-20"
+                     w-2.5 h-2.5 sm:w-3 sm:h-3 text-white pointer-events-none z-20"
             fill="none"
             stroke="currentColor"
             strokeWidth="3"
@@ -144,7 +141,7 @@ const Sidebar = ({ onFilterChange }) => {
 
       <label
         htmlFor={`filter-${label.replace(/\s+/g, "-").toLowerCase()}`}
-        className="ml-3 text-sm text-gray-700 cursor-pointer select-none
+        className="ml-2 sm:ml-3 text-xs sm:text-sm text-gray-700 cursor-pointer select-none
                    group-hover:text-gray-900 transition-colors"
       >
         {label}
@@ -153,10 +150,16 @@ const Sidebar = ({ onFilterChange }) => {
   );
 
   return (
-    <aside className="w-full max-w-md bg-white p-3 rounded-xl shadow-md sticky top-6">
+    <aside
+      className="w-full lg:max-w-md bg-white p-2 sm:p-3 md:p-2 rounded-xl shadow-md 
+                      lg:sticky lg:top-6 lg:self-start lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto
+                      scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+    >
       {/* Sidebar Header */}
-      <div className="flex items-center justify-between mb-6 p-4 border border-gray-200 rounded-2xl">
-        <h2 className="text-lg text-gray-900">Property Preference</h2>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 sm:p-4 border border-gray-200 rounded-2xl">
+        <h2 className="text-base sm:text-lg lg:text-sm text-gray-900 font-semibold">
+          Property Preference
+        </h2>
         <button
           onClick={() => {
             setSelectedSuburbs([]);
@@ -165,8 +168,8 @@ const Sidebar = ({ onFilterChange }) => {
             setMinBudget(5300);
             setMaxBudget(670000);
           }}
-          className="flex items-center gap-1.5 px-3 py-3 text-sm font-medium text-gray-700 
-                     bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+          className="flex items-center px-3 py-1 sm:py-3 text-xs sm:text-sm font-medium text-gray-700 
+                     bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors w-full sm:w-auto justify-center"
         >
           <span>Reset Filter</span>
           <BiReset className="w-4 h-4" />
@@ -174,25 +177,23 @@ const Sidebar = ({ onFilterChange }) => {
       </div>
 
       {/* Rent Budget Filter */}
-      <div className="border border-gray-200 p-5 rounded-xl mb-6 bg-white shadow-sm">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-base font-semibold text-gray-900">Rent Budget</h3>
-          <span className="text-gray-800">
+      <div className="border border-gray-200 p-3 sm:p-4 md:p-5 rounded-xl mb-4 sm:mb-6 bg-white shadow-sm">
+        <div className="flex justify-between items-center mb-3 sm:mb-4">
+          <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+            Rent Budget
+          </h3>
+          <span className="text-gray-800 text-xs sm:text-sm">
             <FaRegWindowMinimize />
           </span>
         </div>
         <div className="space-y-3">
-          {/* Slider with space on both sides */}
-          <div className="relative py-4 px-1">
-            {/* Slider Track with space on sides */}
-            <div className="h-2 bg-gray-200 rounded-full relative overflow-hidden">
-              {/* Left side normal color (20%) */}
+          <div className="relative py-3 sm:py-4 px-1">
+            <div className="h-1.5 sm:h-2 bg-gray-200 rounded-full relative overflow-hidden">
               <div
                 className="h-full bg-gray-300 absolute left-0"
                 style={{ width: "20%" }}
               ></div>
 
-              {/* Middle active range - Project Color */}
               <div
                 className="h-full bg-[#7b1450] absolute"
                 style={{
@@ -201,56 +202,52 @@ const Sidebar = ({ onFilterChange }) => {
                 }}
               ></div>
 
-              {/* Right side normal color (20%) */}
               <div
                 className="h-full bg-gray-300 absolute right-0"
                 style={{ width: "20%" }}
               ></div>
 
-              {/* Min Handle - Project Color */}
               <div
-                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 bg-white border-2 
+                className="absolute top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 bg-white border-2 
                           border-[#7b1450] rounded-full shadow-md cursor-pointer
                           hover:border-[#6b1145] transition-colors z-10"
                 style={{ left: "20%" }}
               >
                 <div
-                  className="w-2 h-2 bg-[#7b1450] rounded-full absolute top-1/2 left-1/2 
+                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#7b1450] rounded-full absolute top-1/2 left-1/2 
                             -translate-x-1/2 -translate-y-1/2"
                 ></div>
               </div>
 
-              {/* Max Handle - Project Color */}
               <div
-                className="absolute top-1/2 -translate-y-1/2 w-5 h-5 bg-white border-2 
+                className="absolute top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 bg-white border-2 
                           border-[#7b1450] rounded-full shadow-md cursor-pointer
                           hover:border-[#6b1145] transition-colors z-10"
                 style={{ left: "80%" }}
               >
                 <div
-                  className="w-2 h-2 bg-[#7b1450] rounded-full absolute top-1/2 left-1/2 
+                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#7b1450] rounded-full absolute top-1/2 left-1/2 
                             -translate-x-1/2 -translate-y-1/2"
                 ></div>
               </div>
             </div>
           </div>
 
-          {/* Min Max text below slider */}
-          <div className="flex justify-between items-center pt-2">
-            <div className="text-center bg-gray-50 px-8 p-2 rounded-md">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-2 pt-2">
+            <div className="text-center bg-gray-50 px-4 sm:px-6 md:px-8 py-2 rounded-md w-full sm:w-auto">
               <div className="text-xs text-gray-500 font-medium mb-1">
                 Minimum
               </div>
-              <div className="text-sm font-semibold text-gray-700">
+              <div className="text-xs sm:text-sm font-semibold text-gray-700">
                 {formatCurrency(minBudget)}
               </div>
             </div>
 
-            <div className="text-center bg-gray-50 px-8 p-2 rounded-md">
+            <div className="text-center bg-gray-50 px-4 sm:px-6 md:px-8 py-2 rounded-md w-full sm:w-auto">
               <div className="text-xs text-gray-500 font-medium mb-1">
                 Maximum
               </div>
-              <div className="text-sm font-semibold text-gray-700">
+              <div className="text-xs sm:text-sm font-semibold text-gray-700">
                 {formatCurrency(maxBudget)}
               </div>
             </div>
@@ -259,14 +256,16 @@ const Sidebar = ({ onFilterChange }) => {
       </div>
 
       {/* Suburb Filter */}
-      <div className="border border-gray-200 p-5 rounded-xl mb-6 bg-white shadow-sm">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-base font-semibold text-gray-900">Suburb</h3>
-          <span className="text-gray-800">
+      <div className="border border-gray-200 p-3 sm:p-4 md:p-5 rounded-xl mb-4 sm:mb-6 bg-white shadow-sm">
+        <div className="flex justify-between items-center mb-3 sm:mb-4">
+          <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+            Suburb
+          </h3>
+          <span className="text-gray-800 text-xs sm:text-sm">
             <FaRegWindowMinimize />
           </span>
         </div>
-        <div className="space-y-3">
+        <div className="space-y-2 sm:space-y-3">
           {suburbs.map((suburb) => (
             <CheckboxItem
               key={suburb}
@@ -279,16 +278,16 @@ const Sidebar = ({ onFilterChange }) => {
       </div>
 
       {/* Property Type Filter */}
-      <div className="border border-gray-200 p-5 rounded-xl mb-6 bg-white shadow-sm">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-base font-semibold text-gray-900">
+      <div className="border border-gray-200 p-3 sm:p-4 md:p-5 rounded-xl mb-4 sm:mb-6 bg-white shadow-sm">
+        <div className="flex justify-between items-center mb-3 sm:mb-4">
+          <h3 className="text-sm sm:text-base font-semibold text-gray-900">
             Property Type
           </h3>
-          <span className="text-gray-800">
+          <span className="text-gray-800 text-xs sm:text-sm">
             <FaRegWindowMinimize />
           </span>
         </div>
-        <div className="space-y-3">
+        <div className="space-y-2 sm:space-y-3">
           {propertyTypes.map((type) => (
             <CheckboxItem
               key={type}
@@ -301,14 +300,16 @@ const Sidebar = ({ onFilterChange }) => {
       </div>
 
       {/* Amenities Filter */}
-      <div className="border border-gray-200 p-5 rounded-xl mb-6 bg-white shadow-sm">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-base font-semibold text-gray-900">Amenities</h3>
-          <span className="text-gray-800">
+      <div className="border border-gray-200 p-3 sm:p-4 md:p-5 rounded-xl mb-4 sm:mb-6 bg-white shadow-sm">
+        <div className="flex justify-between items-center mb-3 sm:mb-4">
+          <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+            Amenities
+          </h3>
+          <span className="text-gray-800 text-xs sm:text-sm">
             <FaRegWindowMinimize />
           </span>
         </div>
-        <div className="space-y-3">
+        <div className="space-y-2 sm:space-y-3">
           {amenities.map((amenity) => (
             <CheckboxItem
               key={amenity}
@@ -318,7 +319,7 @@ const Sidebar = ({ onFilterChange }) => {
             />
           ))}
           <button
-            className="text-sm font-medium text-[#7b1450] hover:text-[#6b1145] 
+            className="text-xs sm:text-sm font-medium text-[#7b1450] hover:text-[#6b1145] 
                       transition-colors mt-2 focus:outline-none focus:underline underline"
           >
             See more

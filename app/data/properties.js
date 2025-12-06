@@ -1,6 +1,3 @@
-// data/properties.js
-
-// আপনার দেওয়া ইমেজ লিংকগুলো একটি অ্যারেতে রাখা হলো
 const propertyImages = [
   "https://res.cloudinary.com/bytestore/image/upload/v1764936495/image_3_otfmrr.png", // 1
   "https://res.cloudinary.com/bytestore/image/upload/v1764936497/image_vgytkr.png", // 2
@@ -9,7 +6,6 @@ const propertyImages = [
   "https://res.cloudinary.com/bytestore/image/upload/v1764936495/image_6_lfb0fk.png", // 5
   "https://res.cloudinary.com/bytestore/image/upload/v1764936495/image_1_ygokbh.png", // 6
   "https://res.cloudinary.com/bytestore/image/upload/v1764936495/image_5_gsofek.png", // 7
-  // বাকি 8 ও 9 নম্বর কার্ডের জন্য প্রথম দুটি ইমেজ রিপিট হবে
 ];
 
 export const initialProperties = [
@@ -23,7 +19,7 @@ export const initialProperties = [
     sqft: 2500,
     location: "New York, USA",
     type: "House",
-    image: propertyImages[0], // লিংক ব্যবহার করা হলো
+    image: propertyImages[0],
   },
   {
     id: 2,
@@ -107,7 +103,7 @@ export const initialProperties = [
     sqft: 4000,
     location: "Texas, USA",
     type: "House",
-    image: propertyImages[0], // রিপিট
+    image: propertyImages[0],
   },
   {
     id: 9,
@@ -119,7 +115,7 @@ export const initialProperties = [
     sqft: 6000,
     location: "LA, USA",
     type: "Town House",
-    image: propertyImages[1], // রিপিট
+    image: propertyImages[1],
   },
 ];
 

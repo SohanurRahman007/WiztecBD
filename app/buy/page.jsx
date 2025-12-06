@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Sidebar from "./components/Sidebar";
-import PropertyList from "./components/PropertyList";
-import { initialProperties } from "./data/properties";
+import Sidebar from "../components/Sidebar";
+import PropertyList from "../components/PropertyList";
+import { initialProperties } from "../data/properties";
 import { IoChevronDown } from "react-icons/io5";
 
 export default function BuyPage() {
