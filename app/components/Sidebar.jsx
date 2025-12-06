@@ -209,7 +209,7 @@ const Sidebar = ({ onFilterChange }) => {
 
               <div
                 className="absolute top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 bg-white border-2 
-                          border-[#7b1450] rounded-full shadow-md cursor-pointer
+                          border-  rounded-full shadow-md cursor-pointer
                           hover:border-[#6b1145] transition-colors z-10"
                 style={{ left: "20%" }}
               >
