@@ -1,13 +1,9 @@
-// components/PropertyList.jsx
-
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { IoBedOutline, IoWaterOutline } from "react-icons/io5";
 import { BiArea } from "react-icons/bi";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 
 import { ITEMS_PER_PAGE } from "../data/properties";
@@ -29,23 +25,6 @@ const PropertyCard = ({ property, onCardClick }) => {
           alt={property.name}
           className="w-full h-full object-cover"
         />
-
-        {/* Favorite Button */}
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsFavorite(!isFavorite);
-          }}
-          className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm p-2 rounded-full 
-                     hover:bg-white transition-colors shadow-md z-10"
-        >
-          {isFavorite ? (
-            <BsHeartFill className="w-4 h-4 text-red-500" />
-          ) : (
-            <BsHeart className="w-4 h-4 text-gray-600" />
-          )}
-        </button>
       </div>
 
       {/* Card Content */}
